@@ -1,0 +1,200 @@
+html{color-scheme:dark}
+
+body{
+  color: #eee;
+  font-family: system-ui;
+  overflow-y: scroll;
+}
+
+.container{
+    width:100%;
+    line-height: 1.5;
+    font-size: 0.9rem;
+    max-height: 60ch;
+    padding:0.5em;
+    margin: 0 auto;
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    flex-wrap:wrap;
+    align-content: space-between;
+  }
+  .item{
+    max-width: 250px;
+    padding: 1rem;
+    border-width: 3px;
+    border-style: solid;
+    border-image: 
+      linear-gradient(
+        to bottom, 
+        #323232, 
+        rgba(75, 37, 135, 0)
+      ) 1 100%;
+    display: flex;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 25ch;
+    height: auto;
+    max-height: 30ch;
+    flex-direction: column;
+    align-content: space-between;
+  
+  }
+
+  .item p{
+    height: 30ch;
+  }
+  /* .item button{
+    background: -webkit-linear-gradient(left top, #7429ff,#a125c0,#a125c0,#691080);
+    background: -o-linear-gradient(bottom right, #7429ff,#a125c0,#a125c0,#691080); 
+    background: -moz-linear-gradient(bottom right, #7429ff,#a125c0,#a125c0,#691080); 
+    background: linear-gradient(to bottom right, #7429ff,#a125c0,#a125c0,#691080);
+    
+    margin: auto;
+    border: none;
+    cursor: pointer;
+    
+  } */
+  .glow-on-hover {
+    margin-top: 10px;
+    margin: 0 auto;
+    bottom: 0;
+    width: 100px;
+    height: 20px;
+    border: 100px;
+    border-color: #b41313;
+    outline: none;
+    color: #fff;
+    background: #710f0f;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #323232;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+  
+  table{
+    font-size: 0.9rem;
+    width: 100%;
+    max-width: 1200px;
+    line-height: 1;
+    background: #323232;
+    border-collapse: collapse;
+    margin: 0 auto;
+  }
+  caption,th,td{
+    padding: 1rem;
+  }
+  caption,th{
+    text-align: left;
+  }
+  caption{
+    background: hsl(0 0% 0%);
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  th{
+    background: hsl(0 0% 0% / 0.5);
+  }
+
+  tr:nth-of-type(2n){
+    background: hsl(0 0% 0% / 0.2);
+  }
+
+  
+  
+  @media (max-width: 650px) {
+    th{
+      display: none;
+    }
+    td{
+      display: grid;
+      grid-template-columns: 7em auto;
+      padding: 0.5rem 1rem;
+    }
+    td:first-child{
+      padding-top: 2rem;
+    }
+    td:last-child{
+      padding-bottom: 2rem;
+    }
+    td::before{
+      font-weight: 700;
+      text-transform: capitalize;
+    }
+    td:nth-of-type(1)::before{
+      content: "Id: ";
+    }
+    td:nth-of-type(2)::before{
+      content: "First Name: ";
+    }
+    td:nth-of-type(3)::before{
+      content: "Last Name: ";
+    }
+    td:nth-of-type(4)::before{
+      content: "Email: ";
+    }
+    td:nth-of-type(5)::before{
+      content: "Income: ";
+    }
+    td:nth-of-type(6)::before{
+      content: "City: ";
+    }
+    td:nth-of-type(7)::before{
+      content: "Car: ";
+    }
+    td:nth-of-type(8)::before{
+      content: "Quote: ";
+    }
+    td:nth-of-type(9)::before{
+      content: "Phone price: ";
+    }
+
+  }
