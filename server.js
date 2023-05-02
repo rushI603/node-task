@@ -1,11 +1,11 @@
 const express = require("express");
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5500;
 const app = express();
 /************ MIDDLEVARES *************/
 
 // Body parser middleware
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 
 /************ DATABASES *************/
 require("dotenv").config()
@@ -40,7 +40,7 @@ app.get("/:id",(req,res)=>{
               console.log(err)
           }
           finally{
-            await client.close()
+            // await client.close()
           
         }
       }
@@ -62,7 +62,7 @@ app.get("/:id",(req,res)=>{
             console.log(err)
         }
         finally{
-          await client.close()
+          // await client.close()
         
       }
       }
@@ -85,7 +85,7 @@ app.get("/:id",(req,res)=>{
               console.log(err)
           }
           finally{
-            await client.close()
+            // await client.close()
           
         }
       }
@@ -122,4 +122,4 @@ app.post("/",(req,res)=>{
 //       await client.close()
 //     }
 // }
-app.listen(PORT,()=>console.log("connected"))
+app.listen(PORT,()=>console.log(`connected at port ${PORT}`))
