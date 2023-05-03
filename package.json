@@ -16,7 +16,6 @@
     "url": "https://github.com/rushI603/node_task/issues"
   },
   "homepage": "https://github.com/rushI603/node_task#readme",
-  
   "dependencies": {
     "axios": "^1.4.0",
     "cors": "^2.8.5",

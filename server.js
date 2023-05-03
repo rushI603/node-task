@@ -69,7 +69,27 @@ app.get("/:id",(req,res)=>{
       runQuery();
   }
   else if(id==3){
+    async function runQuery(){
+      try{
+          const database = client.db("NodeTask");
+          const customer = database.collection("Customer_Info");
+          const query = {$and: [{last_name:/^M/},{$expr:{$gt:[{$strLenCP:"$quote"},15]}},{$expr:{$regexMatch:{input:"$email",regex:"$last_name",options:"i"}}}]}
+        
+          const cursor = await customer.find(query).toArray()
+          console.log(cursor)
+          res.send(cursor)
+        }
+        catch(err){
+            console.log(err)
+        }
+        finally{
+          // await client.close()
+        
+      }
+    }
+    runQuery();
 
+    // {$expr:{$regexMatch:{input:"$email",regex:"$last_name",options:"i"}}}
   }
   else if(id==4){
       async function runQuery(){
@@ -80,6 +100,7 @@ app.get("/:id",(req,res)=>{
           
             const cursor = await customer.find(query).toArray()
             console.log(cursor)
+            res.send(cursor)
           }
           catch(err){
               console.log(err)
@@ -92,6 +113,43 @@ app.get("/:id",(req,res)=>{
       runQuery();
   }
   else if(id==5){
+    async function runQuery(){
+      try{
+          const database = client.db("NodeTask");
+          const customer = database.collection("Customer_Info");
+          const query = {$group:{'_id':"$city","count":{$sum:1},"avg":{$avg:{$toDouble:"$income"}}}}
+        
+          const cursor = await customer.aggregate([query,{$sort:{"avg":-1}},{$limit:10}]).toArray()
+          // cursor.forEach((user)=>{
+          //   if(user.city in data){
+          //     console.log('1')
+          //     data[user.city]["count"]++;
+          //     data[user.city]["income"]+=user.income;
+          //   }
+          //   else{
+          //     data[user.city]={"count":1,"income":user.income};
+          //   }
+          // })
+          // for(city in data){
+          //   data[city]["income"]=data[city]["income"]/data[city]["count"];
+          // }
+          cursor.forEach(data => {
+            data.city=data._id
+            delete data._id
+          });
+          
+          res.send(cursor)
+          console.log(cursor)
+        }
+        catch(err){
+            console.log(err)
+        }
+        finally{
+          // await client.close()
+        
+      }
+    }
+    runQuery();
     
   }
 })

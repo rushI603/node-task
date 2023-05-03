@@ -15,9 +15,9 @@ async function runQuery(){
 try{
     const database = client.db("NodeTask");
     const customer = database.collection("Customer_Info");
-    const query = {$and: [{$or:[{"car":"BMW"},{"car":"Mercedes"},{"car":"Audi"}]},{"email":{"$regex":/^([^0-9]*)$/}}]}
+    const query = {$and: [{$group: {_id:"$city",no_of_users: { $sum: 1 }}}]}
   
-    const cursor = await customer.find(query).toArray()
+    const cursor = await customer.aggregate(query).toArray()
     console.log(cursor)
   }
   catch(err){

@@ -3,12 +3,12 @@ import './App.css';
 import React from "react";
 import {useState} from "react";
 
-function callAPI(a){
-  console.log(a)
-  axios.get(`/${a}`)
-  .then((res)=>{console.log(typeof Array.from(res.data));return Array.from(res?.data);})
-  .catch(error=>console.log(error))
-}
+// function callAPI(a){
+//   console.log(a)
+//   axios.get(`/${a}`)
+//   .then((res)=>{console.log(typeof Array.from(res.data));return Array.from(res?.data);})
+//   .catch(error=>console.log(error))
+// }
 function App() {
   
   const [data, setData] = useState([]); 
@@ -22,7 +22,10 @@ function App() {
                     Users which have income lower than $5 USD and have a car
                     of brand “BMW” or “Mercedes”.
                   </p>
-                  <button  onClick={async ()=> await setData(callAPI(1))} type="submit">Submit</button>
+                  <button  onClick={ ()=>{
+                    axios.get(`/1`)
+                    .then((res)=>{setData(res.data)})}}
+                     type="submit">Submit</button>
             </div>
             <div class="item">
                 <p>
@@ -40,14 +43,19 @@ function App() {
                     greater than 15 and email includes his/her last name
                  
                 </p>
-                <button  onClick={()=>setData(callAPI(3))} type="submit">Submit</button>
+                <button  onClick={ ()=>{
+                    axios.get(`/3`)
+                    .then((res)=>{setData(res.data)})}} type="submit">Submit</button>
             </div>
             <div class="item">
                 <p>
                     Users which have a car of brand “BMW”, “Mercedes” or “Audi” and whose email
                     does not include any digit.
                     </p>
-                    <button  onClick={()=>setData(callAPI(4))} type="submit">Submit</button>
+                    <button  onClick={ ()=>{
+                    axios.get(`/4`)
+                    .then((res)=>{setData(res.data)})}}
+                     type="submit">Submit</button>
             </div>
             <div class="item">
                 <p>
@@ -55,7 +63,10 @@ function App() {
                     and their average income
                  
                 </p>
-                <button  onClick={()=>setData(callAPI(5))} type="submit">Submit</button>
+                <button  onClick={ ()=>{
+                    axios.get(`/5`)
+                    .then((res)=>{setData(res.data)})}}
+                     type="submit">Submit</button>
             </div>
         </div>
         <div class="wrapper">
