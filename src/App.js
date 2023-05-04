@@ -23,7 +23,7 @@ const [access, setAccess] = useState([]);
                     of brand “BMW” or “Mercedes”.
                   </p><br/>
                   <button className='button' onClick={ ()=>{
-                    axios.get(`/1`)
+                    axios.get(`https://nodebackend-kxzt.onrender.com/1`)
                     .then((res)=>{
                         setData(res.data);
                         setHeader(["Id","First name","Last Name","Email","Income","City","Car","Quote","Phone Price"]);
