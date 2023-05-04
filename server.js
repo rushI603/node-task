@@ -33,11 +33,9 @@ app.get("/:id",(req,res)=>{
             const query = {$and: [{"$expr":{"$lte":[{"$toDouble":"$income"},5]}},{"car":"BMW"}]}
           
             const cursor = await customer.find(query).toArray()
-            console.log(cursor)
             res.send(cursor)
           }
           catch(err){
-              console.log(err)
           }
           finally{
             // await client.close()
@@ -55,11 +53,9 @@ app.get("/:id",(req,res)=>{
           const query = {$and: [{"gender":{"$ne":"Female"}},{"$expr":{"$lt":[{"$toDouble":"$phone_price"},10000]}}]}
         
           const cursor = await customer.find(query).toArray()
-          console.log(cursor)
           res.send(cursor)
         }
         catch(err){
-            console.log(err)
         }
         finally{
           // await client.close()
@@ -76,11 +72,10 @@ app.get("/:id",(req,res)=>{
           const query = {$and: [{last_name:/^M/},{$expr:{$gt:[{$strLenCP:"$quote"},15]}},{$expr:{$regexMatch:{input:"$email",regex:"$last_name",options:"i"}}}]}
         
           const cursor = await customer.find(query).toArray()
-          console.log(cursor)
           res.send(cursor)
         }
         catch(err){
-            console.log(err)
+
         }
         finally{
           // await client.close()
@@ -99,11 +94,9 @@ app.get("/:id",(req,res)=>{
             const query = {$and: [{$or:[{"car":"BMW"},{"car":"Mercedes"},{"car":"Audi"}]},{"email":{"$regex":/^([^0-9]*)$/}}]}
           
             const cursor = await customer.find(query).toArray()
-            console.log(cursor)
             res.send(cursor)
           }
           catch(err){
-              console.log(err)
           }
           finally{
             // await client.close()
@@ -139,10 +132,8 @@ app.get("/:id",(req,res)=>{
           });
           
           res.send(cursor)
-          console.log(cursor)
         }
         catch(err){
-            console.log(err)
         }
         finally{
           // await client.close()
@@ -154,12 +145,6 @@ app.get("/:id",(req,res)=>{
   }
 })
 
-app.post("/",(req,res)=>{
-    query=[]
-    console.log(req.params.id)
-    
-    
-}) 
 
 // if(req.body.income){
 //   query.push({"$expr":{"$lte":[{"$toDouble":"$income"},req.body.income.value]}})

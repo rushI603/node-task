@@ -11,70 +11,91 @@ import {useState} from "react";
 // }
 function App() {
   
-  const [data, setData] = useState([]); 
-
-
+const [data, setData] = useState([]); 
+const [header,setHeader] = useState([]);
+const [access, setAccess] = useState([]);
   return (
     <div className="App">
-        <div class="container">
-            <div class="item">
+        <div className="query">
+            <div className="item">
                 <p>
                     Users which have income lower than $5 USD and have a car
                     of brand “BMW” or “Mercedes”.
-                  </p>
-                  <button  onClick={ ()=>{
+                  </p><br/>
+                  <button className='button' onClick={ ()=>{
                     axios.get(`/1`)
-                    .then((res)=>{setData(res.data)})}}
+                    .then((res)=>{
+                        setData(res.data);
+                        setHeader(["Id","First name","Last Name","Email","Income","City","Car","Quote","Phone Price"]);
+                        setAccess(["id","first_name","last_name","email","income","city","car","quote","phone_price"]);
+                        
+                        
+                    })}}
                      type="submit">Submit</button>
             </div>
-            <div class="item">
+            <div className="item">
                 <p>
                     Male Users which have phone price greater than 10,000
                  
-                </p>
-                <button  onClick={ ()=>{
+                </p><br/>
+                <button className='button' onClick={ ()=>{
                     axios.get(`/2`)
-                    .then((res)=>{setData(res.data)})}}
+                    .then((res)=>{
+                        setData(res.data);
+                        setHeader(["Id","First name","Last Name","Email","Income","City","Car","Quote","Phone Price"]);
+                        setAccess(["id","first_name","last_name","email","income","city","car","quote","phone_price"]);
+                    })}}
                  type="submit">Submit</button>
             </div>
-            <div class="item">
+            <div className="item">
                 <p>
                     Users whose last name starts with “M” and has a quote character length
                     greater than 15 and email includes his/her last name
                  
-                </p>
-                <button  onClick={ ()=>{
+                </p><br/>
+                <button className='button' onClick={ ()=>{
                     axios.get(`/3`)
-                    .then((res)=>{setData(res.data)})}} type="submit">Submit</button>
+                    .then((res)=>{
+                        setData(res.data);
+                        setHeader(["Id","First name","Last Name","Email","Income","City","Car","Quote","Phone Price"]);
+                        setAccess(["id","first_name","last_name","email","income","city","car","quote","phone_price"]);
+                    })}} type="submit">Submit</button>
             </div>
-            <div class="item">
+            <div className="item">
                 <p>
                     Users which have a car of brand “BMW”, “Mercedes” or “Audi” and whose email
                     does not include any digit.
-                    </p>
-                    <button  onClick={ ()=>{
+                    </p><br/>
+                    <button className='button' onClick={ ()=>{
                     axios.get(`/4`)
-                    .then((res)=>{setData(res.data)})}}
+                    .then((res)=>{
+                        setData(res.data)
+                        setHeader(["Id","First name","Last Name","Email","Income","City","Car","Quote","Phone Price"]);
+                        setAccess(["id","first_name","last_name","email","income","city","car","quote","phone_price"]);
+                    })}}
                      type="submit">Submit</button>
             </div>
-            <div class="item">
+            <div className="item">
                 <p>
                     Show the data of top 10 cities which have the highest number of users
                     and their average income
                  
-                </p>
-                <button  onClick={ ()=>{
+                </p><br/>
+                <button className='button' onClick={ ()=>{
                     axios.get(`/5`)
-                    .then((res)=>{setData(res.data)})}}
+                    .then((res)=>{
+                        setData(res.data);
+                        setHeader(["City","Count","Average"]);
+                        setAccess(["city","count","avg"])
+                    })}}
                      type="submit">Submit</button>
             </div>
         </div>
-        <div class="wrapper">
-
+        <div className={data.length ? "result":"displaynone"}>
             <table>
                 <caption>Query results</caption>
                 <tr>
-                    <th>Id</th>
+                    {/* <th>Id</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
@@ -82,7 +103,12 @@ function App() {
                     <th>City</th>
                     <th>Car</th>
                     <th>Quote</th>
-                    <th>Phone Price</th>
+                    <th>Phone Price</th> */}
+                    {
+                        header.map((element)=>
+                            <th>{element}</th>
+                        )
+                    }
                 </tr>
                 {}
                 {/* <tr>
@@ -109,7 +135,11 @@ function App() {
                 </tr>*/}
                 {data.map(element => 
                   <tr>
-                    <td>{element?.id}</td>
+                    {access.map((item)=>
+
+                        <td className={item} data-cell={item}>{element[item]}</td>
+                    )}
+                    {/* <td>{element?.id}</td>
                     <td>{element?.first_name}</td>
                     <td>{element?.last_name}</td>
                     <td>{element?.email}</td>
@@ -117,7 +147,7 @@ function App() {
                     <td>{element?.city}</td>
                     <td>{element?.car}</td>
                     <td>{element?.quote}</td>
-                    <td>{element?.phone_price}</td>
+                    <td>{element?.phone_price}</td> */}
                   </tr>
                 )}
             </table>
