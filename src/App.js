@@ -39,7 +39,7 @@ const [access, setAccess] = useState([]);
                  
                 </p><br/>
                 <button className='button' onClick={ ()=>{
-                    axios.get(`/2`)
+                    axios.get(`https://nodebackend-kxzt.onrender.com/2`)
                     .then((res)=>{
                         setData(res.data);
                         setHeader(["Id","First name","Last Name","Email","Income","City","Car","Quote","Phone Price"]);
@@ -54,7 +54,7 @@ const [access, setAccess] = useState([]);
                  
                 </p><br/>
                 <button className='button' onClick={ ()=>{
-                    axios.get(`/3`)
+                    axios.get(`https://nodebackend-kxzt.onrender.com/3`)
                     .then((res)=>{
                         setData(res.data);
                         setHeader(["Id","First name","Last Name","Email","Income","City","Car","Quote","Phone Price"]);
@@ -67,7 +67,7 @@ const [access, setAccess] = useState([]);
                     does not include any digit.
                     </p><br/>
                     <button className='button' onClick={ ()=>{
-                    axios.get(`/4`)
+                    axios.get(`https://nodebackend-kxzt.onrender.com/4`)
                     .then((res)=>{
                         setData(res.data)
                         setHeader(["Id","First name","Last Name","Email","Income","City","Car","Quote","Phone Price"]);
@@ -79,10 +79,9 @@ const [access, setAccess] = useState([]);
                 <p>
                     Show the data of top 10 cities which have the highest number of users
                     and their average income
-                 
                 </p><br/>
                 <button className='button' onClick={ ()=>{
-                    axios.get(`/5`)
+                    axios.get(`https://nodebackend-kxzt.onrender.com/5`)
                     .then((res)=>{
                         setData(res.data);
                         setHeader(["City","Count","Average"]);
