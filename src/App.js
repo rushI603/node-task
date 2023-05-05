@@ -12,6 +12,7 @@ import {useState} from "react";
 function App() {
   
 const [data, setData] = useState([]); 
+const [loader, setLoader] = useState(false);
 const [header,setHeader] = useState([]);
 const [access, setAccess] = useState([]);
   return (
@@ -23,8 +24,11 @@ const [access, setAccess] = useState([]);
                     of brand “BMW” or “Mercedes”.
                   </p><br/>
                   <button className='button' onClick={ ()=>{
+                    setData([]);
+                    setLoader(true);
                     axios.get(`https://nodebackend-kxzt.onrender.com/1`)
                     .then((res)=>{
+                        setLoader(false)
                         setData(res.data);
                         setHeader(["Id","First name","Last Name","Email","Income","City","Car","Quote","Phone Price"]);
                         setAccess(["id","first_name","last_name","email","income","city","car","quote","phone_price"]);
@@ -39,8 +43,11 @@ const [access, setAccess] = useState([]);
                  
                 </p><br/>
                 <button className='button' onClick={ ()=>{
+                    setData([]);
+                    setLoader(true);
                     axios.get(`https://nodebackend-kxzt.onrender.com/2`)
                     .then((res)=>{
+                        setLoader(false)
                         setData(res.data);
                         setHeader(["Id","First name","Last Name","Email","Income","City","Car","Quote","Phone Price"]);
                         setAccess(["id","first_name","last_name","email","income","city","car","quote","phone_price"]);
@@ -54,8 +61,11 @@ const [access, setAccess] = useState([]);
                  
                 </p><br/>
                 <button className='button' onClick={ ()=>{
+                    setData([]);
+                    setLoader(true);
                     axios.get(`https://nodebackend-kxzt.onrender.com/3`)
                     .then((res)=>{
+                        setLoader(false);
                         setData(res.data);
                         setHeader(["Id","First name","Last Name","Email","Income","City","Car","Quote","Phone Price"]);
                         setAccess(["id","first_name","last_name","email","income","city","car","quote","phone_price"]);
@@ -67,8 +77,11 @@ const [access, setAccess] = useState([]);
                     does not include any digit.
                     </p><br/>
                     <button className='button' onClick={ ()=>{
+                    setData([]);
+                    setLoader(true);
                     axios.get(`https://nodebackend-kxzt.onrender.com/4`)
                     .then((res)=>{
+                        setLoader(false)
                         setData(res.data)
                         setHeader(["Id","First name","Last Name","Email","Income","City","Car","Quote","Phone Price"]);
                         setAccess(["id","first_name","last_name","email","income","city","car","quote","phone_price"]);
@@ -81,8 +94,11 @@ const [access, setAccess] = useState([]);
                     and their average income
                 </p><br/>
                 <button className='button' onClick={ ()=>{
+                    setData([]);
+                    setLoader(true);
                     axios.get(`https://nodebackend-kxzt.onrender.com/5`)
                     .then((res)=>{
+                        setLoader(false)
                         setData(res.data);
                         setHeader(["City","Count","Average"]);
                         setAccess(["city","count","avg"])
@@ -90,6 +106,12 @@ const [access, setAccess] = useState([]);
                      type="submit">Submit</button>
             </div>
         </div>
+
+        {/* <div id="cover-spin" className= "cover-spin">Hello</div> */}
+        <div className={loader?"":"displaynone"}>
+        <div id="circle"></div>
+        </div>
+        
         <div className={data.length ? "result":"displaynone"}>
             <table>
                 <caption>Query results</caption>
