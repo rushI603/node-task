@@ -17,7 +17,7 @@ const [header,setHeader] = useState([]);
 const [access, setAccess] = useState([]);
   return (
     <div className="App">
-        <p>Note: If the is a time dealy in loading that's due to free account for deployment and not because of Queries. My queries are truely efficent.</p>
+        <p>Note: If there is a time dealy in loading that's due to free account for deployment and not because of Queries. My queries are truely efficent.</p>
         <div className= "final">
         
             <div className="query">
