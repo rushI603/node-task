@@ -1,3 +1,11 @@
+# Working
+
+Initially there are card associated with each of the Five queries which are given in task.
+For each card there is a button which on getting clicked will send request to API, Which then responds with result of query from database.
+Finally that output will be rendered as a table.
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
